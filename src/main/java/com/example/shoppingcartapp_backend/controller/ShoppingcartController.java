@@ -3,10 +3,9 @@ package com.example.shoppingcartapp_backend.controller;
 import com.example.shoppingcartapp_backend.dao.ShoppingcartDao;
 import com.example.shoppingcartapp_backend.model.Shoppingcart;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ShoppingcartController {
@@ -23,5 +22,10 @@ public class ShoppingcartController {
         dao.save(s);
 
         return "Welcome to product add page";
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/viewall")
+    public List<Shoppingcart> View(){
+        return (List<Shoppingcart>) dao.findAll();
     }
 }
