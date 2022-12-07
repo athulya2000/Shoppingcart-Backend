@@ -30,8 +30,17 @@ public class ShoppingcartController {
     public List<Shoppingcart> View(){
         return (List<Shoppingcart>) dao.findAll();
     }
+     @PostMapping(path="/search",consumes = "application/json",produces = "application/json")
+    public List<Shoppingcart> Search(@RequestBody Shoppingcart s){
+        String name=s.getName();
+        System.out.println(name);
+        return (List<Shoppingcart>) dao.SearchProduct(s.getName());
+    }
+
+
     @Autowired
     private RegistrationDao daor;
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/registration",consumes = "application/json",produces = "application/json")
     public String Registration(@RequestBody Registration r){
         System.out.println(r.getName().toString());
