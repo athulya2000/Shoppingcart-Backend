@@ -1,6 +1,8 @@
 package com.example.shoppingcartapp_backend.controller;
 
+import com.example.shoppingcartapp_backend.dao.RegistrationDao;
 import com.example.shoppingcartapp_backend.dao.ShoppingcartDao;
+import com.example.shoppingcartapp_backend.model.Registration;
 import com.example.shoppingcartapp_backend.model.Shoppingcart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +29,18 @@ public class ShoppingcartController {
     @GetMapping("/viewall")
     public List<Shoppingcart> View(){
         return (List<Shoppingcart>) dao.findAll();
+    }
+    @Autowired
+    private RegistrationDao daor;
+    @PostMapping(path="/registration",consumes = "application/json",produces = "application/json")
+    public String Registration(@RequestBody Registration r){
+        System.out.println(r.getName().toString());
+        System.out.println(r.getAddress().toString());
+        System.out.println(r.getPhoneno().toString());
+        System.out.println(r.getEmailid().toString());
+        System.out.println(r.getPassword().toString());
+        System.out.println(r.getConfirmpassword().toString());
+        daor.save(r);
+        return "successfully registered";
     }
 }
