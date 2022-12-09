@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ShoppingcartDao extends CrudRepository<Shoppingcart,Integer> {
-    @Query(value="SELECT `id`, `category`, `description`, `image`, `name`, `price` FROM `products` WHERE `name`=:name",nativeQuery = true)
+    @Query(value="SELECT `id`, `category`, `description`, `image`, `name`, `price` FROM `products` WHERE `name`LIKE %:name%",nativeQuery = true)
     List<Shoppingcart> SearchProduct(@Param("name") String name);
 }
+
+
+
