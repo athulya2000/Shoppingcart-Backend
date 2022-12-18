@@ -10,4 +10,8 @@ import java.util.List;
 public interface RegistrationDao extends CrudRepository<Registration,Integer> {
     @Query(value="SELECT `id`, `address`, `confirmpassword`, `emailid`, `name`, `password`, `phoneno` FROM `registration` WHERE `emailid`= :emailid AND `password`= :password",nativeQuery = true)
     List<Registration> Validation(@Param("emailid") String emailid,@Param("password") String password);
+
+
+    @Query(value="SELECT `id`, `address`, `confirmpassword`, `emailid`, `name`, `password`, `phoneno` FROM `registration` WHERE `id`= :id",nativeQuery = true)
+    List<Registration> ViewProfile(@Param("id") Integer id);
 }
